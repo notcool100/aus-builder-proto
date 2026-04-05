@@ -41,6 +41,18 @@
   --section-pad: clamp(80px, 10vw, 140px);
   --container: 1320px;
   --gutter: clamp(20px, 5vw, 60px);
+
+  /* Real photography */
+  --img-hero: url("https://images.pexels.com/photos/10202856/pexels-photo-10202856.jpeg?cs=srgb&dl=pexels-thisvikto-10202856.jpg&fm=jpg");
+  --img-perth: url("https://images.unsplash.com/photo-1765005530997-3c4096d4f90a?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000");
+  --img-industrial: var(--img-hero);
+  --img-office: var(--img-perth);
+  --img-house: var(--img-hero);
+  --img-demolition: var(--img-hero);
+  --img-hazmat: var(--img-hero);
+  --img-worker: var(--img-hero);
+  --img-handshake: var(--img-hero);
+  --img-outback: var(--img-perth);
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -377,6 +389,15 @@ button { font-family: var(--font-body); }
     radial-gradient(ellipse 70% 90% at 15% 85%, rgba(12,30,70,.7) 0%, transparent 55%),
     linear-gradient(155deg, #03060e 0%, #080f1e 40%, #0b1628 70%, #0e1e38 100%);
 }
+.hero-photo {
+  position: absolute; inset: 0;
+  background-image: var(--img-hero);
+  background-size: cover;
+  background-position: center;
+  opacity: .25;
+  filter: saturate(1.1) contrast(1.05);
+  mix-blend-mode: screen;
+}
 
 .hero-noise {
   position: absolute; inset: 0; pointer-events: none;
@@ -679,15 +700,16 @@ button { font-family: var(--font-body); }
 
 .proj-thumb {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 80px; font-style: normal;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.05) contrast(1.05);
   transition: transform .65s var(--ease-out);
 }
-.proj-card:nth-child(1) .proj-thumb { background: linear-gradient(145deg, #0d2840, #1a3a60); }
-.proj-card:nth-child(2) .proj-thumb { background: linear-gradient(145deg, #2a1a0a, #3e2810); }
-.proj-card:nth-child(3) .proj-thumb { background: linear-gradient(145deg, #0d200d, #1a3020); }
-.proj-card:nth-child(4) .proj-thumb { background: linear-gradient(145deg, #1a0d2a, #2a1540); }
-.proj-card:nth-child(5) .proj-thumb { background: linear-gradient(145deg, #200d0d, #381515); }
+.proj-1 { background-image: var(--img-industrial); }
+.proj-2 { background-image: var(--img-office); }
+.proj-3 { background-image: var(--img-house); }
+.proj-4 { background-image: var(--img-demolition); }
+.proj-5 { background-image: var(--img-industrial); }
 .proj-card:hover .proj-thumb { transform: scale(1.08); }
 
 .proj-overlay {
@@ -736,11 +758,11 @@ button { font-family: var(--font-body); }
 }
 .ba-panel {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 100px;
+  background-size: cover;
+  background-position: center;
 }
-.ba-before { background: linear-gradient(145deg, #18211a, #243028, #0e1814); }
-.ba-after  { background: linear-gradient(145deg, #0d1828, #172238, #0a1020); clip-path: inset(0 50% 0 0); transition: none; }
+.ba-before { background-image: var(--img-demolition); }
+.ba-after  { background-image: var(--img-office); clip-path: inset(0 50% 0 0); transition: none; }
 
 .ba-divline {
   position: absolute; top: 0; bottom: 0; left: 50%; width: 2.5px;
@@ -777,14 +799,15 @@ button { font-family: var(--font-body); }
 .about-photo {
   border-radius: 12px; overflow: hidden;
   background: var(--navy-3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 64px; min-height: 200px;
+  background-size: cover;
+  background-position: center;
+  min-height: 200px;
   transition: transform .45s var(--ease-out), filter .45s;
 }
 .about-photo:hover { transform: scale(1.03); filter: brightness(1.08); }
-.about-photo:first-child { grid-row: span 2; min-height: 412px; background: linear-gradient(145deg, var(--navy-3), var(--navy-4)); }
-.about-photo:nth-child(2) { background: linear-gradient(145deg, #1a2e1a, #243624); }
-.about-photo:nth-child(3) { background: linear-gradient(145deg, #1a1a2e, #242436); }
+.about-photo:first-child { grid-row: span 2; min-height: 412px; background-image: var(--img-worker); }
+.about-photo:nth-child(2) { background-image: var(--img-handshake); }
+.about-photo:nth-child(3) { background-image: var(--img-outback); }
 
 .indigenous-banner {
   margin-top: 32px; display: inline-flex; align-items: center; gap: 16px;
@@ -843,7 +866,10 @@ button { font-family: var(--font-body); }
 .why-visual-wrap { position: relative; }
 .why-main-img {
   border-radius: 18px; overflow: hidden; height: 520px;
-  background: linear-gradient(145deg, var(--navy-3), var(--navy-4));
+  background: var(--navy-3);
+  background-image: var(--img-hazmat);
+  background-size: cover;
+  background-position: center;
   display: flex; align-items: center; justify-content: center; font-size: 130px;
   position: relative;
   box-shadow: 0 40px 100px rgba(0,0,0,.5);
@@ -988,11 +1014,12 @@ button { font-family: var(--font-body); }
 }
 .loc-bg {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center; font-size: 100px;
+  background-size: cover;
+  background-position: center;
   transition: transform .6s var(--ease-out);
 }
-.loc-card:nth-child(1) .loc-bg { background: linear-gradient(145deg, #0d1e3a, #162844); }
-.loc-card:nth-child(2) .loc-bg { background: linear-gradient(145deg, #1e1005, #2e1a08); }
+.loc-card:nth-child(1) .loc-bg { background-image: var(--img-perth); }
+.loc-card:nth-child(2) .loc-bg { background-image: var(--img-outback); }
 .loc-card:hover .loc-bg { transform: scale(1.06); }
 .loc-overlay {
   position: absolute; inset: 0;
@@ -1232,6 +1259,7 @@ button { font-family: var(--font-body); }
 <!-- ============================================================ -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-photo" aria-hidden="true"></div>
   <div class="hero-noise"></div>
   <div class="hero-grid"></div>
   <div class="orb orb-1"></div>
@@ -1435,7 +1463,7 @@ button { font-family: var(--font-body); }
     </div>
     <div class="projects-mosaic reveal">
       <div class="proj-card" data-cat="industrial">
-        <div class="proj-thumb">🏭</div>
+        <div class="proj-thumb proj-1" role="img" aria-label="Industrial processing plant"></div>
         <div class="proj-overlay">
           <span class="proj-tag">Industrial</span>
           <div class="proj-name">Karratha LNG Facility Decontamination</div>
@@ -1443,7 +1471,7 @@ button { font-family: var(--font-body); }
         </div>
       </div>
       <div class="proj-card" data-cat="commercial">
-        <div class="proj-thumb">🏢</div>
+        <div class="proj-thumb proj-2" role="img" aria-label="Commercial office tower in a city"></div>
         <div class="proj-overlay">
           <span class="proj-tag">Commercial</span>
           <div class="proj-name">Perth CBD Office Tower Removal</div>
@@ -1451,7 +1479,7 @@ button { font-family: var(--font-body); }
         </div>
       </div>
       <div class="proj-card" data-cat="residential">
-        <div class="proj-thumb">🏠</div>
+        <div class="proj-thumb proj-3" role="img" aria-label="Residential heritage home exterior"></div>
         <div class="proj-overlay">
           <span class="proj-tag">Residential</span>
           <div class="proj-name">Fremantle Heritage Home Restoration</div>
@@ -1459,7 +1487,7 @@ button { font-family: var(--font-body); }
         </div>
       </div>
       <div class="proj-card" data-cat="government">
-        <div class="proj-thumb">🏗️</div>
+        <div class="proj-thumb proj-4" role="img" aria-label="Demolition site with heavy machinery"></div>
         <div class="proj-overlay">
           <span class="proj-tag">Government</span>
           <div class="proj-name">Midland Hospital Demolition</div>
@@ -1467,7 +1495,7 @@ button { font-family: var(--font-body); }
         </div>
       </div>
       <div class="proj-card" data-cat="industrial">
-        <div class="proj-thumb">⚙️</div>
+        <div class="proj-thumb proj-5" role="img" aria-label="Industrial plant and pipework"></div>
         <div class="proj-overlay">
           <span class="proj-tag">Industrial</span>
           <div class="proj-name">Port Hedland Processing Plant</div>
@@ -1508,8 +1536,8 @@ button { font-family: var(--font-body); }
       </div>
       <div class="reveal-right">
         <div class="ba-slider" id="baSlider">
-          <div class="ba-panel ba-before">🏚️<div class="ba-lbl ba-lbl-before">BEFORE</div></div>
-          <div class="ba-panel ba-after" id="baAfter">🏠<div class="ba-lbl ba-lbl-after">AFTER</div></div>
+          <div class="ba-panel ba-before"><div class="ba-lbl ba-lbl-before">BEFORE</div></div>
+          <div class="ba-panel ba-after" id="baAfter"><div class="ba-lbl ba-lbl-after">AFTER</div></div>
           <div class="ba-divline" id="baDivLine"></div>
           <div class="ba-knob" id="baKnob">⟺</div>
         </div>
@@ -1525,9 +1553,9 @@ button { font-family: var(--font-body); }
   <div class="container">
     <div class="about-grid">
       <div class="about-photo-grid reveal-left">
-        <div class="about-photo">👷</div>
-        <div class="about-photo" style="font-size:52px;">🤝</div>
-        <div class="about-photo" style="font-size:52px;">🏔️</div>
+        <div class="about-photo" role="img" aria-label="Construction worker portrait"></div>
+        <div class="about-photo" role="img" aria-label="Handshake between partners"></div>
+        <div class="about-photo" role="img" aria-label="Outback landscape"></div>
       </div>
       <div class="reveal-right">
         <div class="section-eyebrow">Our Story</div>
@@ -1601,7 +1629,7 @@ button { font-family: var(--font-body); }
         </div>
       </div>
       <div class="why-visual-wrap reveal-right">
-        <div class="why-main-img">🏗️</div>
+        <div class="why-main-img" role="img" aria-label="Licensed specialist in protective equipment"></div>
         <div class="why-float-badge">
           <div class="badge-counter">
             <div class="num">A</div>
@@ -1753,7 +1781,7 @@ button { font-family: var(--font-body); }
     </div>
     <div class="location-grid reveal">
       <div class="loc-card">
-        <div class="loc-bg">🌆</div>
+        <div class="loc-bg" role="img" aria-label="Perth skyline at dusk"></div>
         <div class="loc-overlay"></div>
         <div class="loc-content">
           <span class="loc-tag">Primary Office</span>
@@ -1768,7 +1796,7 @@ button { font-family: var(--font-body); }
         </div>
       </div>
       <div class="loc-card">
-        <div class="loc-bg">🏜️</div>
+        <div class="loc-bg" role="img" aria-label="Pilbara landscape"></div>
         <div class="loc-overlay"></div>
         <div class="loc-content">
           <span class="loc-tag">Regional Office</span>
