@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 	import Container from '../layout/Container.svelte';
 	import Heading from '../ui/Heading.svelte';
-	import { initStaggerReveal } from '$lib/animations/parallax';
+	import { initStaggerReveal, initGridParallax } from '$lib/animations/parallax';
 
 	const locations = [
 		{
@@ -28,7 +28,11 @@
 
 	onMount(() => {
 		if (!browser) return;
-		return initStaggerReveal(gridEl, '.loc-card', { stagger: 0.15 });
+		const cleanups = [
+			initStaggerReveal(gridEl, '.loc-card', { stagger: 0.15 }),
+			initGridParallax(gridEl, '.loc-img', { speeds: [0.3, -0.4], scaleFrom: 1.2 })
+		];
+		return () => cleanups.forEach((fn) => fn());
 	});
 </script>
 
@@ -51,22 +55,22 @@
 					<div
 						role="img"
 						aria-label={loc.alt}
-						class="absolute inset-0 bg-cover bg-center transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-106"
+						class="loc-img will-change-transform absolute inset-x-0 -inset-y-[20%] bg-cover bg-center"
 						style={`background-image:url(${loc.image});`}
 					></div>
 					<div
 						class="absolute inset-0"
-						style="background: linear-gradient(to top, rgba(5,8,16,.9) 0%, rgba(5,8,16,.4) 55%, transparent 100%);"
+						style="background: linear-gradient(to top, rgba(15,15,12,.92) 0%, rgba(15,15,12,.4) 55%, transparent 100%);"
 					></div>
 					<div class="relative z-2 flex h-full flex-col justify-end p-8">
-						<span class="font-condensed mb-2.5 w-fit rounded bg-orange px-3 py-1 text-[10px] font-bold tracking-[2.5px] uppercase">
+						<span class="font-condensed mb-2.5 w-fit rounded bg-orange px-3 py-1 text-[10px] font-bold tracking-[2.5px] text-cream uppercase">
 							{loc.tag}
 						</span>
-						<div class="font-display mb-1.5 text-[42px] leading-none tracking-[1px]">{loc.city}</div>
-						<div class="mb-4.5 text-[13px] text-grey-1">{loc.state}</div>
+						<div class="font-display mb-1.5 text-[42px] leading-none tracking-[1px] text-cream">{loc.city}</div>
+						<div class="mb-4.5 text-[13px] text-cream/70">{loc.state}</div>
 						<div class="flex flex-wrap gap-1.5">
 							{#each loc.services as svc (svc)}
-								<span class="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] tracking-[0.5px]">{svc}</span>
+								<span class="rounded-full border border-cream/25 bg-cream/10 px-3 py-1.5 text-[11px] tracking-[0.5px] text-cream">{svc}</span>
 							{/each}
 						</div>
 					</div>

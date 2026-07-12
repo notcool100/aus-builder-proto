@@ -26,7 +26,7 @@
 	});
 </script>
 
-<div class="relative overflow-hidden" style="background:linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 60%, #8a3a05 100%);">
+<div class="relative overflow-hidden bg-accent">
 	<Container class="relative z-1 grid grid-cols-2 lg:grid-cols-4">
 		{#each stats as stat, i (stat.label)}
 			<div

@@ -25,7 +25,7 @@
 	<a
 		href="/"
 		onclick={closeMenu}
-		class="flex items-center gap-3 rounded-full border border-ink/8 bg-cream/90 py-2 pr-5 pl-2.5 no-underline shadow-[0_8px_30px_rgba(30,23,32,0.12)] backdrop-blur-md"
+		class="flex items-center gap-3 rounded-full border border-ink/14 bg-cream/95 py-2 pr-5 pl-2.5 no-underline shadow-[0_8px_24px_rgba(29,30,24,0.08)] backdrop-blur-md"
 	>
 		<img src="/logo.svg" alt="Summit Industrial Services logo" class="h-8 w-auto object-contain" />
 		<span class="font-cinematic hidden text-[13px] font-bold tracking-[0.2px] text-ink sm:inline">
@@ -38,7 +38,7 @@
 		aria-label="Toggle menu"
 		aria-expanded={menuOpen}
 		use:magnetic
-		class="font-cinematic flex items-center gap-3 rounded-full bg-cream py-2 pr-2.5 pl-5 text-[13px] font-bold text-ink shadow-[0_8px_30px_rgba(30,23,32,0.16)] transition-shadow duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+		class="font-cinematic flex items-center gap-3 rounded-full border border-ink/14 bg-cream py-2 pr-2.5 pl-5 text-[13px] font-bold text-ink shadow-[0_8px_24px_rgba(29,30,24,0.08)] transition-shadow duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
 	>
 		{menuOpen ? 'Close' : 'Menu'}
 		<span class="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-cream">

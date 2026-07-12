@@ -51,9 +51,9 @@
 		if (!browser) return;
 		const cleanup = initParallaxLayers(
 			[
-				{ element: bgLayer, speed: 0.15 },
-				{ element: photoLayer, speed: 0.28 },
-				{ element: orbLayer, speed: 0.45 }
+				{ element: bgLayer, speed: 0.15, scaleFrom: 1.06 },
+				{ element: photoLayer, speed: 0.32, x: 30, scaleFrom: 1.14 },
+				{ element: orbLayer, speed: 0.55, x: -40, rotate: 4 }
 			],
 			heroEl
 		);
@@ -70,35 +70,34 @@
 		bind:this={bgLayer}
 		class="will-change-transform absolute inset-0"
 		style="background:
-			radial-gradient(ellipse 90% 80% at 75% 40%, rgba(244,124,32,.10) 0%, transparent 55%),
-			radial-gradient(ellipse 70% 90% at 15% 85%, rgba(12,30,70,.7) 0%, transparent 55%),
-			linear-gradient(155deg, #03060e 0%, #080f1e 40%, #0b1628 70%, #0e1e38 100%);"
+			radial-gradient(ellipse 80% 70% at 80% 20%, rgba(193,58,34,.06) 0%, transparent 55%),
+			linear-gradient(155deg, #faf9f5 0%, #f4f2ea 45%, #efece1 100%);"
 	></div>
 
 	<!-- Photo layer (midground) -->
 	<div
 		bind:this={photoLayer}
-		class="will-change-transform absolute inset-0 bg-cover bg-center opacity-25 mix-blend-screen"
+		class="will-change-transform absolute inset-0 bg-cover bg-center opacity-[0.09] mix-blend-multiply"
 		style={`background-image:url(${bgImage});`}
 		aria-hidden="true"
 	></div>
 
-	<div class="bg-noise pointer-events-none absolute inset-0 opacity-[0.025]" aria-hidden="true"></div>
+	<div class="bg-noise pointer-events-none absolute inset-0 opacity-[0.02]" aria-hidden="true"></div>
 	<div class="bg-grid-fade pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
 	<!-- Orbs (foreground-ish, fastest) -->
 	<div bind:this={orbLayer} class="pointer-events-none absolute inset-0" aria-hidden="true">
 		<div
-			class="animate-orb-drift absolute -top-[10%] -right-[5%] h-[650px] w-[650px] rounded-full opacity-80 blur-[100px]"
-			style="background: radial-gradient(circle, rgba(244,124,32,.32), transparent 70%);"
+			class="animate-orb-drift absolute -top-[10%] -right-[5%] h-[650px] w-[650px] rounded-full opacity-70 blur-[110px]"
+			style="background: radial-gradient(circle, rgba(193,58,34,.1), transparent 70%);"
 		></div>
 		<div
-			class="animate-orb-drift absolute bottom-[5%] left-[10%] h-[400px] w-[400px] rounded-full opacity-70 blur-[100px] [animation-direction:reverse] [animation-delay:-5s]"
-			style="background: radial-gradient(circle, rgba(15,55,120,.6), transparent 70%);"
+			class="animate-orb-drift absolute bottom-[5%] left-[10%] h-[400px] w-[400px] rounded-full opacity-60 blur-[110px] [animation-direction:reverse] [animation-delay:-5s]"
+			style="background: radial-gradient(circle, rgba(29,30,24,.05), transparent 70%);"
 		></div>
 		<div
-			class="animate-orb-drift absolute top-[20%] right-[30%] h-[250px] w-[250px] rounded-full opacity-60 blur-[100px] [animation-delay:-3s]"
-			style="background: radial-gradient(circle, rgba(232,165,32,.3), transparent 70%);"
+			class="animate-orb-drift absolute top-[20%] right-[30%] h-[250px] w-[250px] rounded-full opacity-60 blur-[110px] [animation-delay:-3s]"
+			style="background: radial-gradient(circle, rgba(179,128,31,.1), transparent 70%);"
 		></div>
 	</div>
 
@@ -109,7 +108,7 @@
 			{eyebrow}
 		</div>
 
-		<h1 class="font-display mb-7.5 text-[clamp(58px,9vw,110px)] leading-[0.92] tracking-[2px]">
+		<h1 class="font-display mb-7.5 text-[clamp(58px,9vw,110px)] leading-[0.92] tracking-[2px] text-ink">
 			{#each lines as line, i (i)}
 				<span class={`block ${line.accent ? 'text-orange' : ''}`}>{line.text}</span>
 			{/each}
@@ -147,17 +146,17 @@
 			<div class="mx-auto flex max-w-[1320px] flex-wrap px-[clamp(20px,5vw,60px)]">
 				{#each trustItems as item, i (item.value)}
 					<div
-						class={`flex flex-1 min-w-[50%] items-center gap-3.5 border-t border-r border-white/7 bg-white/3 px-6.5 py-5 backdrop-blur-md transition-colors hover:border-orange/25 hover:bg-orange/7 sm:min-w-0 ${i === 0 ? 'border-l' : ''}`}
+						class={`flex flex-1 min-w-[50%] items-center gap-3.5 border-t border-r border-line bg-surface/70 px-6.5 py-5 backdrop-blur-md transition-colors hover:border-orange/25 hover:bg-orange/6 sm:min-w-0 ${i === 0 ? 'border-l' : ''}`}
 					>
 						<div
-							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[18px]"
-							style="background:linear-gradient(135deg, var(--color-orange), var(--color-gold));"
+							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[18px] text-cream"
+							style="background:linear-gradient(135deg, var(--color-orange), var(--color-ochre));"
 						>
 							{item.icon}
 						</div>
 						<div>
 							<p class="font-condensed mb-0.5 text-[10px] tracking-[2px] text-grey-2 uppercase">{item.label}</p>
-							<strong class="text-[13.5px] font-bold">{item.value}</strong>
+							<strong class="text-[13.5px] font-bold text-ink">{item.value}</strong>
 						</div>
 					</div>
 				{/each}

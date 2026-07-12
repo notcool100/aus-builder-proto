@@ -63,9 +63,9 @@
 			{#each steps as step (step.num)}
 				<div class="proc-step group relative z-1 flex flex-col items-center px-4 text-center">
 					<div
-						class="mb-6 flex h-22 w-22 items-center justify-center rounded-full border-2 border-orange/40 bg-navy-2 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:border-orange group-hover:bg-orange group-hover:text-white group-hover:shadow-[0_10px_40px_rgba(244,124,32,0.45)]"
+						class="mb-6 flex h-22 w-22 items-center justify-center rounded-full border-2 border-orange/40 bg-cream transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:border-orange group-hover:bg-orange group-hover:text-cream group-hover:shadow-[0_10px_28px_rgba(193,58,34,0.3)]"
 					>
-						<span class="font-display text-[32px] text-orange group-hover:text-white">{step.num}</span>
+						<span class="font-display text-[32px] text-orange group-hover:text-cream">{step.num}</span>
 					</div>
 					<div class="font-condensed mb-2.5 text-base font-bold">{step.title}</div>
 					<div class="text-[13px] leading-[1.65] text-grey-2">{step.desc}</div>

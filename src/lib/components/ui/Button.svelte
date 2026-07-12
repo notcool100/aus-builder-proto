@@ -16,14 +16,13 @@
 	let { variant = 'primary', href, type = 'button', class: className = '', onclick, children }: Props = $props();
 
 	const base =
-		'inline-flex items-center justify-center gap-2.5 rounded-lg font-body text-[13.5px] font-bold tracking-[1.2px] uppercase cursor-pointer transition-[background,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] px-9 py-4';
+		'inline-flex items-center justify-center gap-2.5 rounded-[3px] font-body text-[13.5px] font-bold tracking-[1.2px] uppercase cursor-pointer transition-[background,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] px-9 py-4';
 
 	const variants: Record<Variant, string> = {
-		primary:
-			'bg-gradient-to-br from-orange to-orange-dark text-white shadow-[0_6px_28px_rgba(244,124,32,0.38)] hover:shadow-[0_14px_50px_rgba(244,124,32,0.55)]',
-		ghost: 'bg-transparent text-white border-[1.5px] border-white/28 hover:border-orange hover:bg-orange/10 py-[15px]',
-		white: 'bg-white text-orange-dark shadow-[0_8px_30px_rgba(0,0,0,0.25)] hover:shadow-[0_18px_55px_rgba(0,0,0,0.35)]',
-		'outline-white': 'bg-transparent text-white border-2 border-white/50 hover:bg-white/15 hover:border-white py-3.5'
+		primary: 'bg-accent text-cream shadow-[0_4px_16px_rgba(29,30,24,0.12)] hover:bg-accent-dark',
+		ghost: 'bg-transparent text-ink border-[1.5px] border-ink/25 hover:border-accent hover:text-accent py-[15px]',
+		white: 'bg-cream text-accent-dark border border-line shadow-[0_4px_16px_rgba(29,30,24,0.1)] hover:shadow-[0_10px_28px_rgba(29,30,24,0.16)]',
+		'outline-white': 'bg-transparent text-cream border-2 border-cream/50 hover:bg-cream/15 hover:border-cream py-3.5'
 	};
 
 	const classes = $derived(`${base} ${variants[variant]} ${className}`);

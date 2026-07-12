@@ -25,7 +25,10 @@
 
 	onMount(() => {
 		if (!browser) return;
-		const cleanups = [initStaggerReveal(gridEl, '.cred-card'), initParallax(badgeEl, { speed: 0.18 })];
+		const cleanups = [
+			initStaggerReveal(gridEl, '.cred-card'),
+			initParallax(badgeEl, { speed: 0.24, rotate: 1.5, x: 14 })
+		];
 		return () => cleanups.forEach((fn) => fn());
 	});
 </script>
@@ -46,7 +49,7 @@
 				<div bind:this={gridEl} class="mt-11 grid grid-cols-1 gap-4 sm:grid-cols-2">
 					{#each creds as cred (cred.title)}
 						<div
-							class="cred-card rounded-xl border border-white/7 bg-white/3 px-5 py-6 text-center transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-orange/35 hover:bg-orange/5"
+							class="cred-card rounded-xl border border-line bg-cream px-5 py-6 text-center transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-orange/35 hover:bg-orange/5"
 						>
 							<div class="mb-3 flex justify-center text-orange">
 								<cred.icon size={30} strokeWidth={1.6} />
@@ -61,15 +64,15 @@
 			<div data-reveal="right">
 				<div
 					bind:this={badgeEl}
-					class="will-change-transform relative overflow-hidden rounded-[20px] border border-white/8 px-8 py-14 shadow-[0_40px_90px_rgba(0,0,0,0.4)]"
+					class="will-change-transform relative overflow-hidden rounded-[20px] border border-line px-8 py-14 shadow-[0_24px_64px_rgba(29,30,24,0.1)]"
 					style="background: var(--color-navy-3);"
 				>
 					<div
 						class="pointer-events-none absolute inset-0"
-						style="background: radial-gradient(ellipse at 70% 30%, rgba(244,124,32,.1), transparent 60%);"
+						style="background: radial-gradient(ellipse at 70% 30%, rgba(193,58,34,.08), transparent 60%);"
 					></div>
 					<div
-						class="animate-badge-spin relative z-2 mx-auto mb-9 flex h-40 w-40 flex-col items-center justify-center rounded-full shadow-[0_20px_60px_rgba(244,124,32,0.45)]"
+						class="animate-badge-spin relative z-2 mx-auto mb-9 flex h-40 w-40 flex-col items-center justify-center rounded-full shadow-[0_16px_40px_rgba(193,58,34,0.3)]"
 						style="background: linear-gradient(145deg, var(--color-orange), var(--color-gold), var(--color-orange-dark));"
 					>
 						<div class="animate-badge-spin-reverse flex flex-col items-center">

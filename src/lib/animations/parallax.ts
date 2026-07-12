@@ -14,39 +14,74 @@ export interface ParallaxOptions {
 	direction?: ParallaxDirection;
 	/** Element (or selector) whose scroll progress drives the animation. Defaults to the target itself. */
 	trigger?: Element | string;
+	/**
+	 * GSAP scrub value. `true` locks the animation 1:1 to scroll position (instant, can feel
+	 * mechanical). A number adds that many seconds of easing lag as scroll catches up, which
+	 * reads as smoother/more cinematic. Defaults to a gentle 0.7s smoothing.
+	 */
 	scrub?: number | boolean;
+	/** Total horizontal drift in px across the trigger's scroll range, for a more three-dimensional, diagonal float instead of a flat vertical slide. */
+	x?: number;
+	/** Total rotation drift in degrees across the scroll range — a faint tilt that reads as depth rather than a rigid straight-line move. */
+	rotate?: number;
+	/** Scale at the top of the trigger's range (element enters larger/smaller and eases to 1 as it centers) — the "reveal" effect used on photography. */
+	scaleFrom?: number;
+	/** Scale at the bottom of the range. Defaults to 1 when `scaleFrom` is set. */
+	scaleTo?: number;
 }
 
 /**
- * Moves `element` along the Y axis as the page scrolls, using GSAP ScrollTrigger.
- * Uses transform: translateY exclusively (never top/left) so the browser can
- * composite the animation on the GPU without triggering layout.
+ * Moves `element` through scroll using transform only (translate/scale/rotate — never
+ * top/left) so the browser composites on the GPU. Beyond a plain vertical slide, layers in
+ * scale, x-drift and rotation are opt-in per call so a call site can dial in anything from a
+ * subtle background nudge to a full cinematic depth-of-field reveal on a hero photo.
  */
 export function initParallax(element: Element | null | undefined, speedOrOptions: number | ParallaxOptions = 0.3) {
 	if (!browser || !element) return () => {};
 
 	const options: ParallaxOptions =
 		typeof speedOrOptions === 'number' ? { speed: speedOrOptions } : speedOrOptions;
-	const { speed = 0.3, direction = 'up', trigger = element, scrub = true } = options;
+	const {
+		speed = 0.3,
+		direction = 'up',
+		trigger = element,
+		scrub = 0.7,
+		x = 0,
+		rotate = 0,
+		scaleFrom,
+		scaleTo = 1
+	} = options;
 
 	gsap.set(element, { willChange: 'transform' });
 
-	const distance = 220 * speed * (direction === 'up' ? -1 : 1);
+	const distance = 260 * speed * (direction === 'up' ? -1 : 1);
 
-	const tween = gsap.fromTo(
-		element,
-		{ y: -distance / 2 },
-		{
-			y: distance / 2,
-			ease: 'none',
-			scrollTrigger: {
-				trigger,
-				start: 'top bottom',
-				end: 'bottom top',
-				scrub
-			}
+	const fromVars: gsap.TweenVars = { y: -distance / 2 };
+	const toVars: gsap.TweenVars = {
+		y: distance / 2,
+		ease: 'none',
+		scrollTrigger: {
+			trigger,
+			start: 'top bottom',
+			end: 'bottom top',
+			scrub
 		}
-	);
+	};
+
+	if (x) {
+		fromVars.x = -x / 2;
+		toVars.x = x / 2;
+	}
+	if (rotate) {
+		fromVars.rotate = -rotate / 2;
+		toVars.rotate = rotate / 2;
+	}
+	if (scaleFrom !== undefined) {
+		fromVars.scale = scaleFrom;
+		toVars.scale = scaleTo;
+	}
+
+	const tween = gsap.fromTo(element, fromVars, toVars);
 
 	return () => {
 		tween.scrollTrigger?.kill();
@@ -59,13 +94,58 @@ export function initParallax(element: Element | null | undefined, speedOrOptions
  * hero: background / midground / foreground) in one call.
  */
 export function initParallaxLayers(
-	layers: Array<{ element: Element | null | undefined; speed: number; direction?: ParallaxDirection }>,
+	layers: Array<{
+		element: Element | null | undefined;
+		speed: number;
+		direction?: ParallaxDirection;
+		x?: number;
+		rotate?: number;
+		scaleFrom?: number;
+		scaleTo?: number;
+	}>,
 	trigger?: Element | string
 ) {
 	if (!browser) return () => {};
-	const cleanups = layers.map(({ element, speed, direction }) =>
-		initParallax(element, { speed, direction, trigger })
+	const cleanups = layers.map(({ element, speed, direction, x, rotate, scaleFrom, scaleTo }) =>
+		initParallax(element, { speed, direction, trigger, x, rotate, scaleFrom, scaleTo })
 	);
+	return () => cleanups.forEach((fn) => fn());
+}
+
+/**
+ * The "waterfall" gallery effect (see e.g. the-goonies.webflow.io): each item in a row/grid
+ * drifts at a visibly *different* speed as the section scrolls through the viewport, so
+ * columns fall out of lockstep and drift back into alignment instead of sliding as one flat
+ * plane. Reads as a living gallery instead of a single boring uniform slide. Speeds cycle
+ * through `speeds` by DOM order, so neighbouring items are deliberately mismatched.
+ */
+export function initGridParallax(
+	container: Element | null | undefined,
+	itemSelector: string,
+	opts: {
+		/** Cycled by item index so adjacent items never share a speed. Signed values reverse direction for extra desync. */
+		speeds?: number[];
+		scaleFrom?: number;
+		scrub?: number | boolean;
+	} = {}
+) {
+	if (!browser || !container) return () => {};
+	const { speeds = [0.22, -0.32, 0.42, -0.18, 0.3, -0.4], scaleFrom, scrub } = opts;
+
+	const items = Array.from(container.querySelectorAll<HTMLElement>(itemSelector));
+	if (!items.length) return () => {};
+
+	const cleanups = items.map((el, i) => {
+		const raw = speeds[i % speeds.length];
+		return initParallax(el, {
+			speed: Math.abs(raw),
+			direction: raw < 0 ? 'down' : 'up',
+			trigger: container,
+			scaleFrom,
+			scrub
+		});
+	});
+
 	return () => cleanups.forEach((fn) => fn());
 }
 

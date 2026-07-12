@@ -41,7 +41,7 @@
 	const year = new Date().getFullYear();
 </script>
 
-<footer class="border-t border-white/6 bg-[#020408] pt-22">
+<footer class="border-t border-line bg-surface-2 pt-22">
 	<Container>
 		<div class="grid grid-cols-1 gap-10 pb-15 sm:grid-cols-2 lg:grid-cols-[2.2fr_1fr_1fr_1.2fr] lg:gap-15">
 			<div>
@@ -62,7 +62,7 @@
 					{#each socials as social (social.label)}
 						<button
 							title={social.label}
-							class="flex h-10 w-10 items-center justify-center rounded-[9px] border border-white/10 text-[15px] text-white transition-all duration-300 hover:-translate-y-1 hover:border-orange hover:bg-orange/10"
+							class="flex h-10 w-10 items-center justify-center rounded-[9px] border border-line text-[15px] text-ink transition-all duration-300 hover:-translate-y-1 hover:border-orange hover:bg-orange/10 hover:text-orange"
 						>
 							{social.short}
 						</button>
@@ -77,7 +77,7 @@
 						<li class="mb-3.5">
 							<a
 								href="/services"
-								class="block text-sm text-white/55 no-underline transition-all duration-300 hover:pl-1.5 hover:text-orange"
+								class="block text-sm text-grey-1 no-underline transition-all duration-300 hover:pl-1.5 hover:text-orange"
 							>
 								{link}
 							</a>
@@ -93,7 +93,7 @@
 						<li class="mb-3.5">
 							<a
 								href="/about"
-								class="block text-sm text-white/55 no-underline transition-all duration-300 hover:pl-1.5 hover:text-orange"
+								class="block text-sm text-grey-1 no-underline transition-all duration-300 hover:pl-1.5 hover:text-orange"
 							>
 								{link}
 							</a>
@@ -109,7 +109,7 @@
 						<li class="mb-3.5">
 							<a
 								href={link.href}
-								class="block text-sm text-white/55 no-underline transition-all duration-300 hover:pl-1.5 hover:text-orange"
+								class="block text-sm text-grey-1 no-underline transition-all duration-300 hover:pl-1.5 hover:text-orange"
 							>
 								{link.label}
 							</a>
@@ -133,7 +133,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col items-center gap-4 border-t border-white/6 py-6.5 sm:flex-row sm:justify-between">
+		<div class="flex flex-col items-center gap-4 border-t border-line py-6.5 sm:flex-row sm:justify-between">
 			<div class="text-[12.5px] text-grey-3">
 				© {year} Summit Industrial Services Pty Ltd. ABN 00 000 000 000. All rights reserved.
 			</div>

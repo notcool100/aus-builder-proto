@@ -48,13 +48,13 @@
 		const cleanups = [
 			initStaggerReveal(featuresEl, '.why-feature'),
 			initStaggerReveal(statsEl, '.mini-stat', { stagger: 0.07 }),
-			initParallax(imageEl, { speed: 0.22 })
+			initParallax(imageEl, { speed: 0.3, scaleFrom: 1.18 })
 		];
 		return () => cleanups.forEach((fn) => fn());
 	});
 </script>
 
-<section class="bg-[#050810] py-[var(--section-pad,clamp(80px,10vw,140px))]" id="why">
+<section class="bg-bg py-[var(--section-pad,clamp(80px,10vw,140px))]" id="why">
 	<Container>
 		<div class="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
 			<div data-reveal="left">
@@ -70,7 +70,7 @@
 				<div bind:this={featuresEl} class="mt-11 flex flex-col gap-5.5">
 					{#each features as feature (feature.title)}
 						<div
-							class="why-feature flex items-start gap-5 rounded-[14px] border border-white/7 bg-white/2.5 px-6 py-6.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-2 hover:border-orange/35 hover:bg-orange/5"
+							class="why-feature flex items-start gap-5 rounded-[14px] border border-line bg-surface px-6 py-6.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-2 hover:border-orange/35 hover:bg-orange/5"
 						>
 							<div
 								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-orange/22 bg-orange/12 text-orange transition-all duration-350"
@@ -87,21 +87,22 @@
 			</div>
 
 			<div data-reveal="right" class="relative">
-				<div
-					bind:this={imageEl}
-					role="img"
-					aria-label="Licensed specialist in protective equipment"
-					class="will-change-transform relative h-[420px] rounded-[18px] bg-cover bg-center shadow-[0_40px_100px_rgba(0,0,0,0.5)] lg:h-[520px]"
-					style="background-image:url(https://images.pexels.com/photos/10202856/pexels-photo-10202856.jpeg?cs=srgb&fm=jpg); background-color: var(--color-navy-3);"
-				>
+				<div class="relative h-[420px] overflow-hidden rounded-[18px] shadow-[0_24px_64px_rgba(29,30,24,0.18)] lg:h-[520px]">
+					<div
+						bind:this={imageEl}
+						role="img"
+						aria-label="Licensed specialist in protective equipment"
+						class="will-change-transform absolute inset-x-0 -inset-y-[14%] bg-cover bg-center"
+						style="background-image:url(https://images.pexels.com/photos/10202856/pexels-photo-10202856.jpeg?cs=srgb&fm=jpg); background-color: var(--color-navy-3);"
+					></div>
 					<div
 						class="pointer-events-none absolute inset-0 rounded-[18px]"
-						style="background: radial-gradient(ellipse at 50% 80%, rgba(244,124,32,.12), transparent 65%);"
+						style="background: radial-gradient(ellipse at 50% 80%, rgba(193,58,34,.14), transparent 65%);"
 					></div>
 				</div>
 
 				<div
-					class="animate-badge-spin absolute -right-6 -bottom-6 hidden h-[150px] w-[150px] items-center justify-center rounded-full shadow-[0_20px_60px_rgba(244,124,32,0.5)] sm:flex"
+					class="animate-badge-spin absolute -right-6 -bottom-6 hidden h-[150px] w-[150px] items-center justify-center rounded-full shadow-[0_14px_36px_rgba(193,58,34,0.32)] sm:flex"
 					style="background: linear-gradient(135deg, var(--color-orange), var(--color-gold), var(--color-orange-dark));"
 				>
 					<div class="animate-badge-spin-reverse flex flex-col items-center">
@@ -113,7 +114,7 @@
 				<div bind:this={statsEl} class="mt-10 grid grid-cols-2 gap-3">
 					{#each miniStats as stat (stat.label)}
 						<div
-							class="mini-stat rounded-xl border border-white/6 bg-navy-3 px-4.5 py-5 text-center transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-orange/30 hover:bg-orange/5"
+							class="mini-stat rounded-xl border border-line bg-surface px-4.5 py-5 text-center transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-orange/30 hover:bg-orange/5"
 						>
 							<div class="font-display text-4xl leading-none text-orange">{stat.num}</div>
 							<div class="mt-1 text-xs tracking-[0.5px] text-grey-2">{stat.label}</div>

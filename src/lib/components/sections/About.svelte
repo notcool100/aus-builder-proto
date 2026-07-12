@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 	import Container from '../layout/Container.svelte';
 	import Heading from '../ui/Heading.svelte';
-	import { initParallax, initStaggerReveal } from '$lib/animations/parallax';
+	import { initGridParallax, initStaggerReveal } from '$lib/animations/parallax';
 
 	interface TeamMember {
 		initials: string;
@@ -34,13 +34,13 @@
 		}
 	];
 
-	let photoEls: HTMLElement[] = [];
+	let photoGridEl: HTMLElement = $state()!;
 	let teamEl: HTMLElement = $state()!;
 
 	onMount(() => {
 		if (!browser) return;
 		const cleanups = [
-			...photoEls.map((el) => initParallax(el, { speed: 0.09 })),
+			initGridParallax(photoGridEl, '.about-photo', { speeds: [0.2, -0.4, 0.32], scaleFrom: 1.22 }),
 			initStaggerReveal(teamEl, '.team-avatar', { stagger: 0.06 })
 		];
 		return () => cleanups.forEach((fn) => fn());
@@ -50,16 +50,19 @@
 <section class={`py-[var(--section-pad,clamp(80px,10vw,140px))] ${background === 'navy' ? 'bg-navy' : 'bg-navy-2'}`} id="about">
 	<Container>
 		<div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
-			<div data-reveal="left" class="grid grid-cols-[1.1fr_1fr] grid-rows-2 gap-3">
+			<div
+				bind:this={photoGridEl}
+				data-reveal="left"
+				class="grid grid-cols-[1.1fr_1fr] grid-rows-2 gap-3"
+			>
 				{#each photos as photo, i (photo.label)}
 					<div
 						class={`relative min-h-[200px] overflow-hidden rounded-xl bg-navy-3 ${photo.span ? 'row-span-2 min-h-[300px] lg:min-h-[412px]' : ''}`}
 					>
 						<div
-							bind:this={photoEls[i]}
 							role="img"
 							aria-label={photo.label}
-							class="will-change-transform absolute inset-x-0 -inset-y-[10%] bg-cover bg-center transition-[transform,filter] duration-450 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 hover:brightness-108"
+							class="about-photo will-change-transform absolute inset-x-0 -inset-y-[22%] bg-cover bg-center transition-[filter] duration-450 ease-[cubic-bezier(0.16,1,0.3,1)] hover:brightness-108"
 							style={`background-image:url(${photo.img});`}
 						></div>
 					</div>
@@ -97,8 +100,8 @@
 						{#each team as member (member.initials)}
 							<div
 								title={member.title}
-								class="team-avatar flex h-13 w-13 cursor-pointer items-center justify-center rounded-full border-2 border-white/10 text-[15px] font-bold transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-108 hover:border-orange"
-								style="background:linear-gradient(135deg, var(--color-navy-4), var(--color-orange));"
+								class="team-avatar flex h-13 w-13 cursor-pointer items-center justify-center rounded-full border-2 border-line text-[15px] font-bold text-cream transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:scale-108 hover:border-orange"
+								style="background:linear-gradient(135deg, var(--color-orange-dark), var(--color-orange));"
 							>
 								{member.initials}
 							</div>

@@ -43,11 +43,11 @@
 			</Heading>
 		</div>
 
-		<div bind:this={gridEl} class="grid grid-cols-1 gap-px bg-white/4 sm:grid-cols-2 lg:grid-cols-3">
+		<div bind:this={gridEl} class="grid grid-cols-1 gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
 			{#each items as item, i (item.title)}
 				<div class="svc-card group relative overflow-hidden bg-navy-2 p-11 pr-9 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 hover:bg-navy-3">
 					<div
-						class="pointer-events-none absolute top-3.5 right-5.5 font-display text-[90px] leading-none text-white/3.5 transition-colors duration-400 select-none group-hover:text-orange/7"
+						class="pointer-events-none absolute top-3.5 right-5.5 font-display text-[90px] leading-none text-ink/5 transition-colors duration-400 select-none group-hover:text-orange/10"
 					>
 						{item.num}
 					</div>

@@ -60,11 +60,11 @@
 				<div class="mt-9.5 flex flex-col gap-4">
 					{#each points as point (point.title)}
 						<div
-							class="flex items-start gap-3.5 rounded-[10px] border border-white/6 bg-white/2.5 px-5 py-4.5 transition-all duration-300 hover:translate-x-1.5 hover:border-orange/30 hover:bg-orange/4"
+							class="flex items-start gap-3.5 rounded-[10px] border border-line bg-surface px-5 py-4.5 transition-all duration-300 hover:translate-x-1.5 hover:border-orange/30 hover:bg-orange/4"
 						>
 							<div class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-orange"></div>
 							<div class="text-sm leading-[1.65] text-grey-1">
-								<strong class="mb-1 block text-[15px] text-white">{point.title}</strong>
+								<strong class="mb-1 block text-[15px] text-ink">{point.title}</strong>
 								{point.desc}
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 			<div data-reveal="right">
 				<div
 					bind:this={sliderEl}
-					class="relative h-[460px] touch-none overflow-hidden rounded-[18px] border border-white/8 shadow-[0_50px_120px_rgba(0,0,0,0.6)] select-none"
+					class="relative h-[460px] touch-none overflow-hidden rounded-[18px] border border-line shadow-[0_24px_64px_rgba(29,30,24,0.18)] select-none"
 					style="cursor: ew-resize;"
 					onpointerdown={startDrag}
 					onpointermove={moveDrag}
@@ -109,7 +109,7 @@
 						style={`left:${pct}%;`}
 					></div>
 					<div
-						class="absolute top-1/2 z-11 flex h-13 w-13 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-navy-2 shadow-[0_6px_24px_rgba(0,0,0,0.5),0_0_0_4px_rgba(255,255,255,0.2)] transition-transform hover:scale-110"
+						class="absolute top-1/2 z-11 flex h-13 w-13 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-ink shadow-[0_6px_24px_rgba(0,0,0,0.35),0_0_0_4px_rgba(255,255,255,0.25)] transition-transform hover:scale-110"
 						style={`left:${pct}%;`}
 					>
 						⟺

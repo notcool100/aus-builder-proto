@@ -70,10 +70,10 @@
 			<img
 				src="/logo.svg"
 				alt="Summit Industrial Services logo"
-				class="h-30 w-auto animate-pulse object-contain drop-shadow-[0_8px_22px_rgba(0,0,0,0.5)]"
+				class="h-30 w-auto animate-pulse object-contain drop-shadow-[0_8px_22px_rgba(29,30,24,0.14)]"
 			/>
 		</div>
-		<div class="h-0.5 w-50 overflow-hidden rounded-full bg-white/8">
+		<div class="h-0.5 w-50 overflow-hidden rounded-full bg-ink/8">
 			<div class="h-full w-full origin-left animate-[fillbar_1.4s_ease-out_forwards] rounded-full bg-gradient-to-r from-orange to-gold"></div>
 		</div>
 		<div class="font-condensed text-[11px] tracking-[4px] text-grey-2 uppercase">Initialising Site Safety Systems...</div>

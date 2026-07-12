@@ -4,7 +4,7 @@
 	import Container from '../layout/Container.svelte';
 	import Heading from '../ui/Heading.svelte';
 	import Button from '../ui/Button.svelte';
-	import { initStaggerReveal } from '$lib/animations/parallax';
+	import { initStaggerReveal, initGridParallax } from '$lib/animations/parallax';
 	import MapPin from 'lucide-svelte/icons/map-pin';
 
 	interface Project {
@@ -72,11 +72,15 @@
 
 	onMount(() => {
 		if (!browser) return;
-		return initStaggerReveal(gridEl, '.proj-card', { stagger: 0.08 });
+		const cleanups = [
+			initStaggerReveal(gridEl, '.proj-card', { stagger: 0.08 }),
+			initGridParallax(gridEl, '.proj-img', { speeds: [0.25, -0.4, 0.45, -0.22, 0.35], scaleFrom: 1.22 })
+		];
+		return () => cleanups.forEach((fn) => fn());
 	});
 </script>
 
-<section class="bg-[#050810] py-[var(--section-pad,clamp(80px,10vw,140px))]" id="projects">
+<section class="bg-surface py-[var(--section-pad,clamp(80px,10vw,140px))]" id="projects">
 	<Container>
 		<div class="mb-12 flex flex-wrap items-end justify-between gap-6">
 			<div data-reveal="left">
@@ -92,8 +96,8 @@
 						onclick={() => (activeFilter = filter)}
 						class={`font-condensed rounded-full border px-5.5 py-2.5 text-xs font-bold tracking-[2px] uppercase transition-all duration-300 ${
 							activeFilter === filter
-								? 'border-orange bg-orange text-white'
-								: 'border-white/14 text-grey-2 hover:border-orange hover:bg-orange hover:text-white'
+								? 'border-orange bg-orange text-cream'
+								: 'border-line text-grey-2 hover:border-orange hover:bg-orange hover:text-cream'
 						}`}
 					>
 						{filter}
@@ -110,18 +114,18 @@
 					<div
 						role="img"
 						aria-label={project.alt}
-						class="absolute inset-0 bg-cover bg-center transition-transform duration-650 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-108"
+						class="proj-img will-change-transform absolute inset-x-0 -inset-y-[18%] bg-cover bg-center"
 						style={`background-image:url(${project.image});`}
 					></div>
 					<div
-						class="absolute inset-0 flex flex-col justify-end p-7.5 opacity-70 transition-opacity duration-400 group-hover:opacity-100"
-						style="background: linear-gradient(to top, rgba(5,8,16,.95) 0%, rgba(5,8,16,.5) 50%, transparent 100%);"
+						class="absolute inset-0 flex flex-col justify-end p-7.5 opacity-80 transition-opacity duration-400 group-hover:opacity-100"
+						style="background: linear-gradient(to top, rgba(15,15,12,.95) 0%, rgba(15,15,12,.5) 50%, transparent 100%);"
 					>
-						<span class="font-condensed mb-2.5 w-fit rounded bg-orange px-3 py-1 text-[10px] font-bold tracking-[2.5px] uppercase">
+						<span class="font-condensed mb-2.5 w-fit rounded bg-orange px-3 py-1 text-[10px] font-bold tracking-[2.5px] text-cream uppercase">
 							{project.tag}
 						</span>
-						<div class="font-condensed mb-1 text-xl font-bold">{project.name}</div>
-						<div class="flex items-center gap-1.5 text-[12.5px] text-grey-1">
+						<div class="font-condensed mb-1 text-xl font-bold text-cream">{project.name}</div>
+						<div class="flex items-center gap-1.5 text-[12.5px] text-cream/70">
 							<MapPin size={13} strokeWidth={2} class="shrink-0" />
 							{project.location}
 						</div>

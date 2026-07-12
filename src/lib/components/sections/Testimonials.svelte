@@ -52,7 +52,10 @@
 	onMount(() => {
 		if (!browser) return;
 		gsap.set(blobEl, { xPercent: -50 });
-		const cleanups = [initStaggerReveal(gridEl, '.testi-card'), initParallax(blobEl, { speed: 0.15 })];
+		const cleanups = [
+			initStaggerReveal(gridEl, '.testi-card'),
+			initParallax(blobEl, { speed: 0.32, x: 120, scaleFrom: 0.85, scaleTo: 1.15 })
+		];
 		return () => cleanups.forEach((fn) => fn());
 	});
 </script>
@@ -61,7 +64,7 @@
 	<div
 		bind:this={blobEl}
 		class="will-change-transform pointer-events-none absolute top-[-300px] left-1/2 h-[900px] w-[900px] rounded-full"
-		style="background: radial-gradient(circle, rgba(244,124,32,.06), transparent 70%);"
+		style="background: radial-gradient(circle, rgba(193,58,34,.05), transparent 70%);"
 	></div>
 
 	<Container class="relative">
@@ -76,7 +79,7 @@
 		<div bind:this={gridEl} class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each testimonials as t (t.name)}
 				<div
-					class="testi-card relative overflow-hidden rounded-[18px] border border-white/7 bg-navy-3 p-9.5 transition-all duration-450 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:border-orange/25 hover:shadow-[0_30px_70px_rgba(0,0,0,0.35)]"
+					class="testi-card relative overflow-hidden rounded-[18px] border border-line bg-cream p-9.5 transition-all duration-450 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2.5 hover:border-orange/25 hover:shadow-[0_20px_48px_rgba(29,30,24,0.12)]"
 				>
 					<span
 						class="pointer-events-none absolute top-5 right-6 font-serif text-[120px] leading-[0.7] text-orange/12 select-none"
@@ -90,8 +93,8 @@
 					<p class="mb-7.5 text-[15px] leading-[1.8] text-grey-1 italic">&ldquo;{t.text}&rdquo;</p>
 					<div class="flex items-center gap-3.5">
 						<div
-							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-[15px] font-extrabold"
-							style="background: linear-gradient(135deg, var(--color-orange), var(--color-navy-5));"
+							class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-[15px] font-extrabold text-cream"
+							style="background: linear-gradient(135deg, var(--color-orange), var(--color-orange-dark));"
 						>
 							{t.initials}
 						</div>

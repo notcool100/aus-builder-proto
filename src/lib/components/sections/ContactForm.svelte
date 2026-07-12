@@ -65,7 +65,7 @@
 	});
 </script>
 
-<section class="bg-[#050810] py-[var(--section-pad,clamp(80px,10vw,140px))]" id="contact">
+<section class="bg-surface py-[var(--section-pad,clamp(80px,10vw,140px))]" id="contact">
 	<Container>
 		<div class="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1.25fr] lg:gap-20">
 			<div data-reveal="left">
@@ -81,7 +81,7 @@
 				<div bind:this={cardsEl} class="mt-9.5 flex flex-col gap-3.5">
 					{#each contactCards as card (card.label)}
 						<div
-							class="contact-card flex items-start gap-4.5 rounded-xl border border-white/7 bg-white/2.5 px-6 py-5.5 transition-all duration-300 hover:border-orange/30 hover:bg-orange/4"
+							class="contact-card flex items-start gap-4.5 rounded-xl border border-line bg-cream px-6 py-5.5 transition-all duration-300 hover:border-orange/30 hover:bg-orange/4"
 						>
 							<div class="mt-0.5 shrink-0 text-orange">
 								<card.icon size={20} strokeWidth={1.75} />
@@ -115,7 +115,7 @@
 						<div class="mb-2 flex justify-center text-success">
 							<CircleCheckBig size={30} strokeWidth={1.75} />
 						</div>
-						<p class="font-semibold text-white">Enquiry sent! We'll respond within 4 business hours.</p>
+						<p class="font-semibold text-ink">Enquiry sent! We'll respond within 4 business hours.</p>
 					</div>
 				{:else}
 					<form class="flex flex-col gap-3.5" onsubmit={handleSubmit}>
@@ -126,7 +126,7 @@
 									required
 									type="text"
 									placeholder="John"
-									class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+									class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 								/>
 							</label>
 							<label class="block">
@@ -135,7 +135,7 @@
 									required
 									type="text"
 									placeholder="Smith"
-									class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+									class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 								/>
 							</label>
 						</div>
@@ -147,7 +147,7 @@
 									required
 									type="email"
 									placeholder="john@company.com.au"
-									class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+									class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 								/>
 							</label>
 							<label class="block">
@@ -156,7 +156,7 @@
 									required
 									type="tel"
 									placeholder="0400 000 000"
-									class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+									class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 								/>
 							</label>
 						</div>
@@ -166,7 +166,7 @@
 							<input
 								type="text"
 								placeholder="ABC Construction Pty Ltd"
-								class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+								class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 							/>
 						</label>
 
@@ -175,7 +175,7 @@
 								<span class="font-condensed mb-2 block text-[10.5px] font-bold tracking-[2.5px] text-grey-2 uppercase">Service Required *</span>
 								<select
 									required
-									class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+									class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 								>
 									<option value="">Select a service...</option>
 									{#each services as service (service)}
@@ -188,7 +188,7 @@
 								<input
 									type="text"
 									placeholder="Perth, Karratha or suburb..."
-									class="w-full rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+									class="w-full rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 								/>
 							</label>
 						</div>
@@ -198,7 +198,7 @@
 							<textarea
 								required
 								placeholder="Tell us about your project — site type, approximate area, timeline, any known materials, urgency level..."
-								class="min-h-[130px] w-full resize-y rounded-[9px] border border-white/10 bg-white/4 px-4.5 py-3.5 text-sm text-white outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(244,124,32,0.12)]"
+								class="min-h-[130px] w-full resize-y rounded-[9px] border border-line bg-cream px-4.5 py-3.5 text-sm text-ink outline-none transition-all placeholder:text-grey-3 focus:border-orange focus:bg-orange/5 focus:shadow-[0_0_0_3px_rgba(193,58,34,0.12)]"
 							></textarea>
 						</label>
 

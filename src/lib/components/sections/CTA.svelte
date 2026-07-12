@@ -28,13 +28,9 @@
 	}: Props = $props();
 </script>
 
-<section class="relative overflow-hidden py-[var(--section-pad,clamp(80px,10vw,140px))] text-center" style="background:linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-dark) 45%, #7a3205 100%);">
-	<div
-		class="pointer-events-none absolute inset-0"
-		style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 0h1v64H8zM0 8v1h64H8z' fill='%23fff' fill-opacity='0.04'/%3E%3C/svg%3E&quot;);"
-	></div>
+<section class="relative overflow-hidden bg-accent py-[var(--section-pad,clamp(80px,10vw,140px))] text-center">
 	<div class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-		<span class="font-display text-[clamp(120px,20vw,260px)] whitespace-nowrap text-white opacity-5 tracking-[10px]">{supertext}</span>
+		<span class="font-display text-[clamp(120px,20vw,260px)] whitespace-nowrap text-white opacity-[0.055] tracking-[10px]">{supertext}</span>
 	</div>
 
 	<Container class="relative z-2">

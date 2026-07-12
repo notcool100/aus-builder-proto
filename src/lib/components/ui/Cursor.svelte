@@ -32,13 +32,13 @@
 		function onOver(e: MouseEvent) {
 			if ((e.target as HTMLElement)?.closest?.('a, button, [data-cursor-hover]')) {
 				gsap.to(dotEl, { scale: 0, duration: 0.25, ease: 'power2.out' });
-				gsap.to(ringEl, { scale: 1.9, backgroundColor: 'rgba(244,124,32,0.12)', duration: 0.35, ease: 'power2.out' });
+				gsap.to(ringEl, { scale: 1.9, backgroundColor: 'rgba(193,58,34,0.1)', duration: 0.35, ease: 'power2.out' });
 			}
 		}
 		function onOut(e: MouseEvent) {
 			if ((e.target as HTMLElement)?.closest?.('a, button, [data-cursor-hover]')) {
 				gsap.to(dotEl, { scale: 1, duration: 0.25, ease: 'power2.out' });
-				gsap.to(ringEl, { scale: 1, backgroundColor: 'rgba(244,124,32,0)', duration: 0.35, ease: 'power2.out' });
+				gsap.to(ringEl, { scale: 1, backgroundColor: 'rgba(193,58,34,0)', duration: 0.35, ease: 'power2.out' });
 			}
 		}
 
