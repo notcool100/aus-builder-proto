@@ -4,25 +4,29 @@
 	import Container from '../layout/Container.svelte';
 	import Heading from '../ui/Heading.svelte';
 	import { initStaggerReveal, initParallax } from '$lib/animations/parallax';
+	import ShieldCheck from 'lucide-svelte/icons/shield-check';
+	import Zap from 'lucide-svelte/icons/zap';
+	import FileText from 'lucide-svelte/icons/file-text';
+	import Handshake from 'lucide-svelte/icons/handshake';
 
 	const features = [
 		{
-			icon: '🛡️',
+			icon: ShieldCheck,
 			title: 'Proven Zero-Incident Safety Record',
 			desc: 'Our safety management system exceeds all industry benchmarks. SWMS, JSAs, and toolbox talks on every job. Zero LTIs across 500+ projects.'
 		},
 		{
-			icon: '⚡',
+			icon: Zap,
 			title: 'Rapid Mobilisation — 48 Hour Response',
 			desc: 'From quote approval to boots on the ground in as little as 48 hours. Full emergency response capability 24/7, 365 days — anywhere in WA.'
 		},
 		{
-			icon: '📄',
+			icon: FileText,
 			title: 'Complete Compliance Documentation Package',
 			desc: 'Every project delivers clearance certificates, air monitoring reports, waste manifests, and a full compliance file — protecting you legally and operationally.'
 		},
 		{
-			icon: '🤝',
+			icon: Handshake,
 			title: 'Indigenous Business Procurement Advantage',
 			desc: 'Supply Nation certified — helping government and corporate clients satisfy Indigenous procurement targets while receiving premium quality service.'
 		}
@@ -69,9 +73,9 @@
 							class="why-feature flex items-start gap-5 rounded-[14px] border border-white/7 bg-white/2.5 px-6 py-6.5 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:translate-x-2 hover:border-orange/35 hover:bg-orange/5"
 						>
 							<div
-								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-orange/22 bg-orange/12 text-[22px] transition-all duration-350"
+								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-orange/22 bg-orange/12 text-orange transition-all duration-350"
 							>
-								{feature.icon}
+								<feature.icon size={22} strokeWidth={1.75} />
 							</div>
 							<div>
 								<div class="font-condensed mb-1.5 text-lg font-bold tracking-[0.3px]">{feature.title}</div>

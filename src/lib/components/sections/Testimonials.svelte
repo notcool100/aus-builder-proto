@@ -5,6 +5,7 @@
 	import Container from '../layout/Container.svelte';
 	import Heading from '../ui/Heading.svelte';
 	import { initStaggerReveal, initParallax } from '$lib/animations/parallax';
+	import Star from 'lucide-svelte/icons/star';
 
 	const testimonials = [
 		{
@@ -83,7 +84,7 @@
 					>
 					<div class="mb-5.5 flex gap-0.5 text-gold">
 						{#each Array(5) as _, i (i)}
-							<span>★</span>
+							<Star size={15} fill="currentColor" strokeWidth={0} />
 						{/each}
 					</div>
 					<p class="mb-7.5 text-[15px] leading-[1.8] text-grey-1 italic">&ldquo;{t.text}&rdquo;</p>

@@ -5,14 +5,7 @@
 	import Heading from '../ui/Heading.svelte';
 	import Button from '../ui/Button.svelte';
 	import { initStaggerReveal } from '$lib/animations/parallax';
-
-	interface ServiceItem {
-		num: string;
-		icon: string;
-		title: string;
-		desc: string;
-		href?: string;
-	}
+	import type { ServiceItem } from '$lib/data/services';
 
 	interface Props {
 		eyebrow?: string;
@@ -59,9 +52,9 @@
 						{item.num}
 					</div>
 					<div
-						class="mb-6.5 flex h-13.5 w-13.5 items-center justify-center rounded-xl border border-orange/22 bg-orange/10 text-[26px] transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-108 group-hover:-rotate-4 group-hover:border-orange/55 group-hover:bg-orange/22"
+						class="mb-6.5 flex h-13.5 w-13.5 items-center justify-center rounded-xl border border-orange/22 bg-orange/10 text-orange transition-all duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-108 group-hover:-rotate-4 group-hover:border-orange/55 group-hover:bg-orange/22"
 					>
-						{item.icon}
+						<item.icon size={24} strokeWidth={1.75} />
 					</div>
 					<h3 class="font-condensed mb-3.5 text-[22px] leading-tight font-bold tracking-[0.5px]">{item.title}</h3>
 					<p class="mb-8 text-sm leading-[1.75] text-grey-1">{item.desc}</p>
@@ -89,7 +82,18 @@
 
 		{#if viewAllHref}
 			<div class="mt-13 text-center">
-				<Button variant="ghost" href={viewAllHref}>{viewAllLabel} →</Button>
+				<Button variant="ghost" href={viewAllHref}>
+					{viewAllLabel}
+					<svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+						><path
+							d="M3 8h10M9 4l4 4-4 4"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/></svg
+					>
+				</Button>
 			</div>
 		{/if}
 	</Container>

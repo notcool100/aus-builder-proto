@@ -5,6 +5,7 @@
 	import Heading from '../ui/Heading.svelte';
 	import Button from '../ui/Button.svelte';
 	import { initStaggerReveal } from '$lib/animations/parallax';
+	import MapPin from 'lucide-svelte/icons/map-pin';
 
 	interface Project {
 		category: 'industrial' | 'commercial' | 'residential' | 'government';
@@ -120,14 +121,28 @@
 							{project.tag}
 						</span>
 						<div class="font-condensed mb-1 text-xl font-bold">{project.name}</div>
-						<div class="text-[12.5px] text-grey-1">📍 {project.location}</div>
+						<div class="flex items-center gap-1.5 text-[12.5px] text-grey-1">
+							<MapPin size={13} strokeWidth={2} class="shrink-0" />
+							{project.location}
+						</div>
 					</div>
 				</div>
 			{/each}
 		</div>
 
 		<div class="mt-13 text-center">
-			<Button variant="ghost" href="/services">View All Projects →</Button>
+			<Button variant="ghost" href="/services">
+				View All Projects
+				<svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+					><path
+						d="M3 8h10M9 4l4 4-4 4"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/></svg
+				>
+			</Button>
 		</div>
 	</Container>
 </section>

@@ -6,13 +6,20 @@
 	import Heading from '../ui/Heading.svelte';
 	import Button from '../ui/Button.svelte';
 	import { initStaggerReveal } from '$lib/animations/parallax';
+	import MapPin from 'lucide-svelte/icons/map-pin';
+	import Phone from 'lucide-svelte/icons/phone';
+	import Mail from 'lucide-svelte/icons/mail';
+	import Clock from 'lucide-svelte/icons/clock';
+	import Siren from 'lucide-svelte/icons/siren';
+	import CircleCheckBig from 'lucide-svelte/icons/circle-check-big';
+	import Lock from 'lucide-svelte/icons/lock';
 
 	const contactCards = [
-		{ icon: '📍', label: 'Perth Office', value: '123 Industrial Avenue, Welshpool WA 6106' },
-		{ icon: '📍', label: 'Karratha Office', value: '45 Balmoral Road, Karratha WA 6714' },
-		{ icon: '📞', label: 'Phone', value: '(08) 9000 0000' },
-		{ icon: '✉️', label: 'Email', value: 'info@aarcoenvironmental.com.au' },
-		{ icon: '🕐', label: 'Office Hours', value: 'Mon–Fri 7:00am – 5:30pm AWST' }
+		{ icon: MapPin, label: 'Perth Office', value: '123 Industrial Avenue, Welshpool WA 6106' },
+		{ icon: MapPin, label: 'Karratha Office', value: '45 Balmoral Road, Karratha WA 6714' },
+		{ icon: Phone, label: 'Phone', value: '(08) 9000 0000' },
+		{ icon: Mail, label: 'Email', value: 'info@aarcoenvironmental.com.au' },
+		{ icon: Clock, label: 'Office Hours', value: 'Mon–Fri 7:00am – 5:30pm AWST' }
 	];
 
 	const services = [
@@ -76,7 +83,9 @@
 						<div
 							class="contact-card flex items-start gap-4.5 rounded-xl border border-white/7 bg-white/2.5 px-6 py-5.5 transition-all duration-300 hover:border-orange/30 hover:bg-orange/4"
 						>
-							<div class="mt-0.5 shrink-0 text-[22px]">{card.icon}</div>
+							<div class="mt-0.5 shrink-0 text-orange">
+								<card.icon size={20} strokeWidth={1.75} />
+							</div>
 							<div>
 								<div class="font-condensed mb-1 text-[10px] font-bold tracking-[2.5px] text-orange uppercase">{card.label}</div>
 								<div class="text-[15px] font-medium leading-normal">{card.value}</div>
@@ -86,7 +95,9 @@
 				</div>
 
 				<div class="mt-7 flex items-center gap-4 rounded-xl border border-orange/30 bg-orange/10 px-5.5 py-5">
-					<div class="animate-alert-pulse shrink-0 text-[28px]">🚨</div>
+					<div class="animate-alert-pulse shrink-0 text-orange">
+						<Siren size={26} strokeWidth={1.75} />
+					</div>
 					<div>
 						<div class="font-condensed mb-0.5 text-[15px] font-bold text-orange">24/7 Emergency Asbestos Response</div>
 						<div class="text-[13px] text-grey-1">
@@ -101,7 +112,9 @@
 
 				{#if submitted}
 					<div bind:this={successEl} class="rounded-xl border border-success/40 bg-success/10 px-6 py-8 text-center">
-						<div class="mb-2 text-3xl">✅</div>
+						<div class="mb-2 flex justify-center text-success">
+							<CircleCheckBig size={30} strokeWidth={1.75} />
+						</div>
 						<p class="font-semibold text-white">Enquiry sent! We'll respond within 4 business hours.</p>
 					</div>
 				{:else}
@@ -205,8 +218,9 @@
 								>
 							{/if}
 						</Button>
-						<div class="text-center text-xs text-grey-2">
-							🔒 Your information is kept strictly confidential and never shared. Responses within 4 business hours.
+						<div class="flex items-center justify-center gap-1.5 text-center text-xs text-grey-2">
+							<Lock size={13} strokeWidth={2} class="shrink-0" />
+							Your information is kept strictly confidential and never shared. Responses within 4 business hours.
 						</div>
 					</form>
 				{/if}

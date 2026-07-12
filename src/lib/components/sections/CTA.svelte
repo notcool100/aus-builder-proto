@@ -2,6 +2,8 @@
 	import type { Snippet } from 'svelte';
 	import Container from '../layout/Container.svelte';
 	import Button from '../ui/Button.svelte';
+	import ClipboardList from 'lucide-svelte/icons/clipboard-list';
+	import Phone from 'lucide-svelte/icons/phone';
 
 	interface Props {
 		supertext?: string;
@@ -46,8 +48,8 @@
 			</h2>
 			<p class="mx-auto mb-12 max-w-[520px] text-[clamp(15px,1.6vw,19px)] text-white/85">{sub}</p>
 			<div class="flex flex-wrap justify-center gap-4">
-				<Button variant="white" href={primaryHref}>📋 {primaryLabel}</Button>
-				<Button variant="outline-white" href={phoneHref}>📞 {phone}</Button>
+				<Button variant="white" href={primaryHref}><ClipboardList size={17} strokeWidth={2} /> {primaryLabel}</Button>
+				<Button variant="outline-white" href={phoneHref}><Phone size={17} strokeWidth={2} /> {phone}</Button>
 			</div>
 		</div>
 	</Container>

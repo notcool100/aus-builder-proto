@@ -4,14 +4,20 @@
 	import Container from '../layout/Container.svelte';
 	import Heading from '../ui/Heading.svelte';
 	import { initStaggerReveal, initParallax } from '$lib/animations/parallax';
+	import Landmark from 'lucide-svelte/icons/landmark';
+	import TriangleAlert from 'lucide-svelte/icons/triangle-alert';
+	import RefreshCw from 'lucide-svelte/icons/refresh-cw';
+	import Leaf from 'lucide-svelte/icons/leaf';
+	import FlaskConical from 'lucide-svelte/icons/flask-conical';
+	import ShieldCheck from 'lucide-svelte/icons/shield-check';
 
 	const creds = [
-		{ icon: '🏛️', title: 'Class A Asbestos Licence', sub: 'Licensed for friable & non-friable asbestos removal in WA' },
-		{ icon: '⚠️', title: 'WorkSafe WA Certified', sub: 'Full compliance with all WA occupational health & safety regulations' },
-		{ icon: '🔄', title: 'ISO 9001:2015', sub: 'Internationally certified quality management system' },
-		{ icon: '🌿', title: 'Supply Nation Certified', sub: 'Verified Indigenous business — supporting Closing the Gap' },
-		{ icon: '🧪', title: 'EPA Compliant', sub: 'Full Environmental Protection Authority waste disposal compliance' },
-		{ icon: '🛡️', title: 'Fully Insured', sub: '$20M public liability & professional indemnity coverage' }
+		{ icon: Landmark, title: 'Class A Asbestos Licence', sub: 'Licensed for friable & non-friable asbestos removal in WA' },
+		{ icon: TriangleAlert, title: 'WorkSafe WA Certified', sub: 'Full compliance with all WA occupational health & safety regulations' },
+		{ icon: RefreshCw, title: 'ISO 9001:2015', sub: 'Internationally certified quality management system' },
+		{ icon: Leaf, title: 'Supply Nation Certified', sub: 'Verified Indigenous business — supporting Closing the Gap' },
+		{ icon: FlaskConical, title: 'EPA Compliant', sub: 'Full Environmental Protection Authority waste disposal compliance' },
+		{ icon: ShieldCheck, title: 'Fully Insured', sub: '$20M public liability & professional indemnity coverage' }
 	];
 
 	let gridEl: HTMLElement;
@@ -42,7 +48,9 @@
 						<div
 							class="cred-card rounded-xl border border-white/7 bg-white/3 px-5 py-6 text-center transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-orange/35 hover:bg-orange/5"
 						>
-							<div class="mb-3 text-[32px]">{cred.icon}</div>
+							<div class="mb-3 flex justify-center text-orange">
+								<cred.icon size={30} strokeWidth={1.6} />
+							</div>
 							<div class="font-condensed mb-1.5 text-sm font-bold tracking-[0.5px]">{cred.title}</div>
 							<div class="text-xs leading-[1.5] text-grey-2">{cred.sub}</div>
 						</div>
